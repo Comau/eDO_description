@@ -1,10 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
 <robot
-  name="edo_sim">
+  name="edo_sim" xmlns:xacro="http://ros.org/wiki/xacro">
+
+
+  <gazebo>
+    <plugin name="ros_control" filename="libgazebo_ros_control.so">
+      <!--robotNamespace>/edo</robotNamespace-->
+      <!--robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType-->
+    </plugin>
+  </gazebo>
+
   <link
     name="base_link">
     <inertial>
       <origin
-        xyz="0.0617583602130883 0.437262464550775 -0.00395442197852672"
+        xyz="0.057188 0.005983 0.05"
         rpy="0 0 0" />
       <mass
         value="0.0785942338762368" />
@@ -22,7 +32,10 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://edo_sim/meshes/base_link.STL" />
+          filename="package://edo_description/meshes/base_link.STL" />
+        <material name="LightGrey">
+	  <color rgba="0.7 0.7 0.7 1.0"/>
+        </material>
       </geometry>
       <material
         name="">
@@ -36,7 +49,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://edo_sim/meshes/base_link.STL" />
+          filename="package://edo_description/meshes/base_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -44,7 +57,7 @@
     name="link_1">
     <inertial>
       <origin
-        xyz="-0.00457048841401064 0.303831811417004 -0.00202866410579916"
+        xyz="-0.037464 0.047260 0"
         rpy="0 0 0" />
       <mass
         value="0.0785942338762368" />
@@ -62,7 +75,10 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://edo_sim/meshes/link_1.STL" />
+          filename="package://edo_description/meshes/link_1.STL" />
+        <material name="LightGrey">
+	  <color rgba="0.7 0.7 0.7 1.0"/>
+        </material>
       </geometry>
       <material
         name="">
@@ -76,7 +92,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://edo_sim/meshes/link_1.STL" />
+          filename="package://edo_description/meshes/link_1.STL" />
       </geometry>
     </collision>
   </link>
@@ -92,12 +108,14 @@
       link="link_1" />
     <axis
       xyz="0 1 0" />
+    <limit effort="150.0" lower="-6.28318530718" upper="6.28318530718" velocity="3.15"/>
+    <dynamics damping="0.0" friction="0.0"/>
   </joint>
   <link
     name="link_2">
     <inertial>
       <origin
-        xyz="-0.0168406485709407 0.071318237296396 -0.0876822373080704"
+        xyz="-0.016423 0.031803 -0.045948"
         rpy="0 0 0" />
       <mass
         value="0.0785942338762368" />
@@ -115,7 +133,10 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://edo_sim/meshes/link_2.STL" />
+          filename="package://edo_description/meshes/link_2.STL" />
+        <material name="LightGrey">
+	  <color rgba="0.7 0.7 0.7 1.0"/>
+        </material>
       </geometry>
       <material
         name="">
@@ -129,7 +150,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://edo_sim/meshes/link_2.STL" />
+          filename="package://edo_description/meshes/link_2.STL" />
       </geometry>
     </collision>
   </link>
@@ -145,12 +166,14 @@
       link="link_2" />
     <axis
       xyz="-0.88847 0.2908 0.35504" />
+    <limit effort="150.0" lower="-6.28318530718" upper="6.28318530718" velocity="3.15"/>
+    <dynamics damping="0.0" friction="0.0"/>
   </joint>
   <link
     name="link_3">
     <inertial>
       <origin
-        xyz="0.00457048841401063 0.0962524890074447 0.00395442197852662"
+        xyz="-0.031475 0.013100 0.000326"
         rpy="0 0 0" />
       <mass
         value="0.0785942338762368" />
@@ -168,7 +191,10 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://edo_sim/meshes/link_3.STL" />
+          filename="package://edo_description/meshes/link_3.STL" />
+        <material name="LightGrey">
+	  <color rgba="0.7 0.7 0.7 1.0"/>
+        </material>
       </geometry>
       <material
         name="">
@@ -182,7 +208,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://edo_sim/meshes/link_3.STL" />
+          filename="package://edo_description/meshes/link_3.STL" />
       </geometry>
     </collision>
   </link>
@@ -198,12 +224,14 @@
       link="link_3" />
     <axis
       xyz="1 0 0" />
+    <limit effort="150.0" lower="-6.28318530718" upper="6.28318530718" velocity="3.15"/>
+    <dynamics damping="0.0" friction="0.0"/>
   </joint>
   <link
     name="link_4">
     <inertial>
       <origin
-        xyz="-0.00422951158597114 -0.00395442197852627 0.255057059248813"
+        xyz="0.033909 0.000544 -0.013765"
         rpy="0 0 0" />
       <mass
         value="0.0785942338762368" />
@@ -221,7 +249,10 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://edo_sim/meshes/link_4.STL" />
+          filename="package://edo_description/meshes/link_4.STL" />
+        <material name="LightGrey">
+	  <color rgba="0.7 0.7 0.7 1.0"/>
+        </material>
       </geometry>
       <material
         name="">
@@ -235,7 +266,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://edo_sim/meshes/link_4.STL" />
+          filename="package://edo_description/meshes/link_4.STL" />
       </geometry>
     </collision>
   </link>
@@ -251,12 +282,14 @@
       link="link_4" />
     <axis
       xyz="0 0 -1" />
+    <limit effort="150.0" lower="-6.28318530718" upper="6.28318530718" velocity="3.15"/>
+    <dynamics damping="0.0" friction="0.0"/>
   </joint>
   <link
     name="link_5">
     <inertial>
       <origin
-        xyz="0.00422951158596777 -0.00395442197852616 -0.360352489007445"
+        xyz="0.029485 -0.000458 0.026739"
         rpy="0 0 0" />
       <mass
         value="0.0785942338762368" />
@@ -274,7 +307,10 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://edo_sim/meshes/link_5.STL" />
+          filename="package://edo_description/meshes/link_5.STL" />
+        <material name="LightGrey">
+	  <color rgba="0.7 0.7 0.7 1.0"/>
+        </material>
       </geometry>
       <material
         name="">
@@ -288,7 +324,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://edo_sim/meshes/link_5.STL" />
+          filename="package://edo_description/meshes/link_5.STL" />
       </geometry>
     </collision>
   </link>
@@ -304,12 +340,14 @@
       link="link_5" />
     <axis
       xyz="-1 0 0" />
+    <limit effort="150.0" lower="-6.28318530718" upper="6.28318530718" velocity="3.15"/>
+    <dynamics damping="0.0" friction="0.0"/>
   </joint>
   <link
     name="link_6">
     <inertial>
       <origin
-        xyz="1.10581233290358E-05 -0.00932339385603209 6.35624315718574E-06"
+        xyz="0.000007 -0.009327 0.000006"
         rpy="0 0 0" />
       <mass
         value="0.0279702497322662" />
@@ -327,7 +365,10 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://edo_sim/meshes/link_6.STL" />
+          filename="package://edo_description/meshes/link_6.STL" />
+        <material name="LightGrey">
+	  <color rgba="0.7 0.7 0.7 1.0"/>
+        </material>
       </geometry>
       <material
         name="">
@@ -341,7 +382,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://edo_sim/meshes/link_6.STL" />
+          filename="package://edo_description/meshes/link_6.STL" />
       </geometry>
     </collision>
   </link>
@@ -357,5 +398,136 @@
       link="link_6" />
     <axis
       xyz="0 -1 0" />
+    <limit effort="150.0" lower="-6.28318530718" upper="6.28318530718" velocity="3.15"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+
+  <joint name="ee_fixed_joint" type="fixed">
+    <parent link="link_6"/>
+    <child link="ee_link"/>
+    <origin rpy="0.0 0.0 1.57079632679" xyz="0.0 0.0823 0.0"/>
+  </joint>
+  <link name="ee_link">
+    <collision>
+      <geometry>
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="-0.01 0 0"/>
+    </collision>
+  </link>
+
+
+  <transmission name="joint_1_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_1">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="joint_1_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="joint_2_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_2">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="joint_2_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="joint_3_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_3">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="joint_3_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="joint_4_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_4">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="joint_4_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="joint_5_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_5">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="joint_5_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="joint_6_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_6">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="joint_6_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <gazebo reference="link_1">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+  <gazebo reference="link_2">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+  <gazebo reference="link_3">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+  <gazebo reference="link_4">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+  <gazebo reference="link_5">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+  <gazebo reference="link_6">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+
+
+  <!-- ROS base_link to UR 'Base' Coordinates transform -->
+  <!--link name="map"/>
+  <joint name="base-map_fixed_joint" type="fixed"-->
+    <!-- NOTE: this rotation is only needed as long as base_link itself is
+                 not corrected wrt the real robot (ie: rotated over 180
+                 degrees)
+      -->
+    <!--origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="map"/>
+    <child link="base_link"/>
+  </joint-->
+
+  <!-- ROS base_link to UR 'Base' Coordinates transform -->
+  <!--link name="base"/>
+  <joint name="base_link-base_fixed_joint" type="fixed"-->
+    <!-- NOTE: this rotation is only needed as long as base_link itself is
+                 not corrected wrt the real robot (ie: rotated over 180
+                 degrees)
+      -->
+    <!--origin rpy="0 0 -3.14159265359" xyz="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="base"/>
+  </joint-->
+
+<!-- Frame coincident with all-zeros TCP on UR controller -->
+  <link name="tool0"/>
+  <joint name="link_6-tool0_fixed_joint" type="fixed">
+    <origin rpy="-1.57079632679 0 0" xyz="0 0.0823 0"/>
+    <parent link="link_6"/>
+    <child link="tool0"/>
+  </joint>
+  <link name="world"/>
+  <joint name="world_joint" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
   </joint>
 </robot>
