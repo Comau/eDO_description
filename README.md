@@ -11,5 +11,3 @@ To test the URDF in RViz use the two commands:
 roslaunch edo_description edo_upload.launch
 roslaunch edo_description test.launch
 ```
-
-and then in RViz change the fixed frame to `world`. Then you can visualize the robot by using the `Add` button and select `Robot Model`.
