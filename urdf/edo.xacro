@@ -11,7 +11,7 @@
     <!-- some constants -->
     <xacro:property name="joint_damping" value="0.5" />
     <xacro:property name="max_effort" value="300"/>
-    <xacro:property name="max_velocity" value="10"/>
+    <xacro:property name="max_velocity" value="1.5"/>
 
     <xacro:macro name="edo" params="parent hardware_interface robot_name *origin">
 
@@ -296,7 +296,10 @@
             <child link="${robot_name}_link_6"/>
             <origin xyz="0 0 0.1745" rpy="${PI} 0 0"/>
             <axis xyz="0 0 -1"/>
-            <limit lower="${-2700 * PI / 180}" upper="${2700 * PI / 180}"
+            <!-- MoveIt has problems with these huge limits -->
+            <!--limit lower="${-2700 * PI / 180}" upper="${2700 * PI / 180}"
+                   effort="${max_effort}" velocity="${max_velocity}" /-->
+            <limit lower="${-270 * PI / 180}" upper="${270 * PI / 180}"
                    effort="${max_effort}" velocity="${max_velocity}" />
             <dynamics damping="${joint_damping}"/>
         </joint>
