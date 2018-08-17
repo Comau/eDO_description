@@ -58,7 +58,7 @@
         <joint name="${robot_name}_joint_spacer" type="fixed">
             <parent link="${robot_name}_base_link"/>
             <child link="${robot_name}_base_spacer_link"/>
-            <origin xyz="0 0 0.135" rpy="0 0 0"/>
+            <origin xyz="0 0 0.135" rpy="0 0 ${PI / 2}"/>
         </joint>
 
         <link name="${robot_name}_base_spacer_link">
@@ -96,7 +96,7 @@
         <joint name="${robot_name}_joint_1" type="revolute">
             <parent link="${robot_name}_base_link"/>
             <child link="${robot_name}_link_1"/>
-            <origin xyz="0 0 ${0.135 + 0.202}" rpy="0 0 0"/>
+            <origin xyz="0 0 ${0.135 + 0.202}" rpy="0 0 ${PI / 2}"/>
             <axis xyz="0 0 1"/>
             <limit lower="${-180 * PI / 180}" upper="${180 * PI / 180}"
                    effort="${max_effort}" velocity="${max_velocity}" />
