@@ -58,7 +58,8 @@
             <child link="${robot_name}_link_1"/>
             <origin xyz="0 0 ${0.135 + 0.202}" rpy="0 0 0"/>
             <axis xyz="0 0 1"/>
-            <limit lower="${-180 * PI / 180}" upper="${180 * PI / 180}"
+            <!-- Joint limits of the real robot determined by jogging. TechSheet is wrong -->
+            <limit lower="${-178 * PI / 180}" upper="${178 * PI / 180}"
                    effort="${max_effort}" velocity="${max_velocity}" />
             <dynamics damping="${joint_damping}"/>
         </joint>
@@ -95,7 +96,8 @@
             <child link="${robot_name}_link_2"/>
             <origin xyz="0 0 0" rpy="${PI /2} 0 0"/>
             <axis xyz="0 0 -1"/>
-            <limit lower="${-113 * PI / 180}" upper="${113 * PI / 180}"
+            <!-- Joint limits of the real robot determined by jogging. TechSheet is wrong -->
+            <limit lower="${-98 * PI / 180}" upper="${98 * PI / 180}"
                    effort="${max_effort}" velocity="${max_velocity}" />
             <dynamics damping="${joint_damping}"/>
         </joint>
@@ -133,7 +135,8 @@
             <child link="${robot_name}_link_3"/>
             <origin xyz="0 0.2105 0" rpy="0 ${PI} ${PI}"/>
             <axis xyz="0 0 1"/>
-            <limit lower="${-113 * PI / 180}" upper="${113 * PI / 180}"
+            <!-- Joint limits of the real robot determined by jogging. TechSheet is wrong -->
+            <limit lower="${-98 * PI / 180}" upper="${98 * PI / 180}"
                    effort="${max_effort}" velocity="${max_velocity}" />
             <dynamics damping="${joint_damping}"/>
         </joint>
@@ -173,7 +176,8 @@
             <child link="${robot_name}_link_4"/>
             <origin xyz="0 -0.268 0" rpy="${PI / 2} 0 0"/>
             <axis xyz="0 0 1"/>
-            <limit lower="${-180 * PI / 180}" upper="${180 * PI / 180}"
+            <!-- Joint limits of the real robot determined by jogging. TechSheet is wrong -->
+            <limit lower="${-178 * PI / 180}" upper="${178 * PI / 180}"
                    effort="${max_effort}" velocity="${max_velocity}" />
             <dynamics damping="${joint_damping}"/>
         </joint>
@@ -212,7 +216,8 @@
             <child link="${robot_name}_link_5"/>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <axis xyz="0 1 0"/>
-            <limit lower="${-104 * PI / 180}" upper="${104 * PI / 180}"
+            <!-- Joint limits of the real robot determined by jogging. TechSheet is wrong -->
+            <limit lower="${-103 * PI / 180}" upper="${103 * PI / 180}"
                    effort="${max_effort}" velocity="${max_velocity}" />
             <dynamics damping="${joint_damping}"/>
         </joint>
