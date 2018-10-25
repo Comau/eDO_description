@@ -12,6 +12,7 @@
     <xacro:property name="joint_damping" value="0.5" />
     <xacro:property name="max_effort" value="300"/>
     <xacro:property name="max_velocity" value="1.5"/>
+    <xacro:property name="robot_prefix" value="edo"/>
 
     <xacro:macro name="edo" params="parent hardware_interface robot_name *origin">
 
@@ -19,10 +20,10 @@
         <joint name="${parent}_${robot_name}_joint" type="fixed">
             <xacro:insert_block name="origin"/>
             <parent link="${parent}"/>
-            <child link="${robot_name}_base_link"/>
+            <child link="${robot_prefix}_base_link"/>
         </joint>
 
-        <link name="${robot_name}_base_link">
+        <link name="${robot_prefix}_base_link">
             <inertial>
                 <origin xyz="0.057188 0.005983 0.05" rpy="0 0 0"/>
                 <mass value="0.0785942338762368"/>
@@ -53,9 +54,9 @@
         </link>
 
         <!-- joint between base_link and link_1 -->
-        <joint name="${robot_name}_joint_1" type="revolute">
-            <parent link="${robot_name}_base_link"/>
-            <child link="${robot_name}_link_1"/>
+        <joint name="${robot_prefix}_joint_1" type="revolute">
+            <parent link="${robot_prefix}_base_link"/>
+            <child link="${robot_prefix}_link_1"/>
             <origin xyz="0 0 ${0.135 + 0.202}" rpy="0 0 0"/>
             <axis xyz="0 0 1"/>
             <!-- Joint limits of the real robot determined by jogging. TechSheet is wrong -->
@@ -64,7 +65,7 @@
             <dynamics damping="${joint_damping}"/>
         </joint>
 
-        <link name="${robot_name}_link_1">
+        <link name="${robot_prefix}_link_1">
             <inertial>
                 <origin xyz="-0.037464 0.047260 0" rpy="0 0 0"/>
                 <mass value="0.0785942338762368"/>
@@ -91,9 +92,9 @@
             </collision>
         </link>
 
-        <joint name="${robot_name}_joint_2" type="revolute">
-            <parent link="${robot_name}_link_1"/>
-            <child link="${robot_name}_link_2"/>
+        <joint name="${robot_prefix}_joint_2" type="revolute">
+            <parent link="${robot_prefix}_link_1"/>
+            <child link="${robot_prefix}_link_2"/>
             <origin xyz="0 0 0" rpy="${PI /2} 0 0"/>
             <axis xyz="0 0 -1"/>
             <!-- Joint limits of the real robot determined by jogging. TechSheet is wrong -->
@@ -102,7 +103,7 @@
             <dynamics damping="${joint_damping}"/>
         </joint>
 
-        <link name="${robot_name}_link_2">
+        <link name="${robot_prefix}_link_2">
             <inertial>
                 <origin xyz="-0.016423 0.031803 -0.045948" rpy="0 0 0"/>
                 <mass value="0.0785942338762368"/>
@@ -130,9 +131,9 @@
             </collision>
         </link>
 
-        <joint name="${robot_name}_joint_3" type="revolute">
-            <parent link="${robot_name}_link_2"/>
-            <child link="${robot_name}_link_3"/>
+        <joint name="${robot_prefix}_joint_3" type="revolute">
+            <parent link="${robot_prefix}_link_2"/>
+            <child link="${robot_prefix}_link_3"/>
             <origin xyz="0 0.2105 0" rpy="0 ${PI} ${PI}"/>
             <axis xyz="0 0 1"/>
             <!-- Joint limits of the real robot determined by jogging. TechSheet is wrong -->
@@ -141,7 +142,7 @@
             <dynamics damping="${joint_damping}"/>
         </joint>
 
-        <link name="${robot_name}_link_3">
+        <link name="${robot_prefix}_link_3">
             <inertial>
                 <origin xyz="-0.031475 0.013100 0.000326" rpy="0 0 0"/>
                 <mass value="0.0785942338762368"/>
@@ -171,9 +172,9 @@
 
         </link>
 
-        <joint name="${robot_name}_joint_4" type="revolute">
-            <parent link="${robot_name}_link_3"/>
-            <child link="${robot_name}_link_4"/>
+        <joint name="${robot_prefix}_joint_4" type="revolute">
+            <parent link="${robot_prefix}_link_3"/>
+            <child link="${robot_prefix}_link_4"/>
             <origin xyz="0 -0.268 0" rpy="${PI / 2} 0 0"/>
             <axis xyz="0 0 1"/>
             <!-- Joint limits of the real robot determined by jogging. TechSheet is wrong -->
@@ -182,7 +183,7 @@
             <dynamics damping="${joint_damping}"/>
         </joint>
 
-        <link name="${robot_name}_link_4">
+        <link name="${robot_prefix}_link_4">
             <inertial>
                 <origin xyz="0.033909 0.000544 -0.013765" rpy="0 0 0"/>
                 <mass value="0.0785942338762368"/>
@@ -211,9 +212,9 @@
             </collision>
         </link>
 
-        <joint name="${robot_name}_joint_5" type="revolute">
-            <parent link="${robot_name}_link_4"/>
-            <child link="${robot_name}_link_5"/>
+        <joint name="${robot_prefix}_joint_5" type="revolute">
+            <parent link="${robot_prefix}_link_4"/>
+            <child link="${robot_prefix}_link_5"/>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <axis xyz="0 1 0"/>
             <!-- Joint limits of the real robot determined by jogging. TechSheet is wrong -->
@@ -222,7 +223,7 @@
             <dynamics damping="${joint_damping}"/>
         </joint>
 
-        <link name="${robot_name}_link_5">
+        <link name="${robot_prefix}_link_5">
             <inertial>
                 <origin xyz="0.029485 -0.000458 0.026739" rpy="0 0 0"/>
                 <mass value="0.0785942338762368"/>
@@ -251,9 +252,9 @@
             </collision>
         </link>
 
-        <joint name="${robot_name}_joint_6" type="revolute">
-            <parent link="${robot_name}_link_5"/>
-            <child link="${robot_name}_link_6"/>
+        <joint name="${robot_prefix}_joint_6" type="revolute">
+            <parent link="${robot_prefix}_link_5"/>
+            <child link="${robot_prefix}_link_6"/>
             <origin xyz="0 0 0.1745" rpy="0 0 0"/>
             <axis xyz="0 0 1"/>
             <!-- MoveIt has problems with these huge limits -->
@@ -264,7 +265,7 @@
             <dynamics damping="${joint_damping}"/>
         </joint>
 
-        <link name="${robot_name}_link_6">
+        <link name="${robot_prefix}_link_6">
             <inertial>
                 <origin xyz="0.000007 -0.009327 0.000006" rpy="0 0 0"/>
                 <mass value="0.0279702497322662"/>
@@ -293,17 +294,17 @@
             </collision>
         </link>
 
-        <joint name="${robot_name}_joint_ee" type="fixed">
-            <parent link="${robot_name}_link_6"/>
-            <child link="${robot_name}_link_ee"/>
+        <joint name="${robot_prefix}_joint_ee" type="fixed">
+            <parent link="${robot_prefix}_link_6"/>
+            <child link="${robot_prefix}_link_ee"/>
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </joint>
 
-        <link name="${robot_name}_link_ee">
+        <link name="${robot_prefix}_link_ee">
         </link>
 
         <!--Extensions -->
-        <xacro:edo_gazebo robot_name="${robot_name}" />
+        <xacro:edo_gazebo robot_name="${robot_name}" robot_prefix="${robot_prefix}" />
         <xacro:edo_transmission hardware_interface="${hardware_interface}"/>
 
     </xacro:macro>
