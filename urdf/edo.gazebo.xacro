@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="edo_gazebo" params="robot_name robot_prefix">
+
+        <!-- Load Gazebo lib and set the robot namespace -->
+        <gazebo>
+            <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+                <robotNamespace>/${robot_name}</robotNamespace>
+            </plugin>
+        </gazebo>
+
+        <!-- Link0 -->
+        <gazebo reference="${robot_prefix}_base_link">
+            <mu1>0.2</mu1>
+            <mu2>0.2</mu2>
+        </gazebo>
+
+        <!-- Link1 -->
+        <gazebo reference="${robot_prefix}_link_1">
+            <mu1>0.2</mu1>
+            <mu2>0.2</mu2>
+        </gazebo>
+
+        <!-- Link2 -->
+        <gazebo reference="${robot_prefix}_link_2">
+            <mu1>0.2</mu1>
+            <mu2>0.2</mu2>
+        </gazebo>
+
+        <!-- Link3 -->
+        <gazebo reference="${robot_prefix}_link_3">
+            <mu1>0.2</mu1>
+            <mu2>0.2</mu2>
+        </gazebo>
+
+
+        <!-- Link4 -->
+        <gazebo reference="${robot_prefix}_link_4">
+            <mu1>0.2</mu1>
+            <mu2>0.2</mu2>
+        </gazebo>
+
+        <!-- Link5 -->
+        <gazebo reference="${robot_prefix}_link_5">
+            <mu1>0.2</mu1>
+            <mu2>0.2</mu2>
+        </gazebo>
+
+        <!-- Link6 -->
+        <gazebo reference="${robot_prefix}_link_6">
+            <mu1>0.2</mu1>
+            <mu2>0.2</mu2>
+        </gazebo>
+
+    </xacro:macro>
+
+</robot>
+

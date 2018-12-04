@@ -1,0 +1,312 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Import all Gazebo-customization elements, including Gazebo colors -->
+    <xacro:include filename="$(find edo_description)/urdf/edo.gazebo.xacro" />
+    <!-- Import Transmissions -->
+    <xacro:include filename="$(find edo_description)/urdf/edo.transmission.xacro" />
+    <!-- Include Utilities -->
+    <xacro:include filename="$(find edo_description)/urdf/utilities.xacro" />
+
+    <!-- some constants -->
+    <xacro:property name="joint_damping" value="0.5" />
+    <xacro:property name="max_effort" value="300"/>
+    <xacro:property name="max_velocity" value="1.5"/>
+    <xacro:property name="robot_prefix" value="edo"/>
+
+    <xacro:macro name="edo" params="parent hardware_interface robot_name *origin">
+
+        <!--joint between {parent} and base_link-->
+        <joint name="${parent}_${robot_name}_joint" type="fixed">
+            <xacro:insert_block name="origin"/>
+            <parent link="${parent}"/>
+            <child link="${robot_prefix}_base_link"/>
+        </joint>
+
+        <link name="${robot_prefix}_base_link">
+            <inertial>
+                <origin xyz="0.057188 0.005983 0.05" rpy="0 0 0"/>
+                <mass value="0.0785942338762368"/>
+                <inertia
+                        ixx="0.0123841200738068"
+                        ixy="-0.000187984913202787"
+                        ixz="-1.32683892634308E-06"
+                        iyy="7.0169034503364E-05"
+                        iyz="-9.17416945099319E-05"
+                        izz="0.0123862261905614" />
+            </inertial>
+
+            <visual>
+                <origin xyz="0 0 0.135" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://edo_description/meshes/visual/link_0.dae"/>
+                </geometry>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0.135" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://edo_description/meshes/collision/link_0.dae"/>
+                </geometry>
+                <material name="Grey"/>
+            </collision>
+
+        </link>
+
+        <!-- joint between base_link and link_1 -->
+        <joint name="${robot_prefix}_joint_1" type="revolute">
+            <parent link="${robot_prefix}_base_link"/>
+            <child link="${robot_prefix}_link_1"/>
+            <origin xyz="0 0 ${0.135 + 0.202}" rpy="0 0 0"/>
+            <axis xyz="0 0 1"/>
+            <!-- Joint limits of the real robot determined by jogging. TechSheet is wrong -->
+            <limit lower="${-178 * PI / 180}" upper="${178 * PI / 180}"
+                   effort="${max_effort}" velocity="${max_velocity}" />
+            <dynamics damping="${joint_damping}"/>
+        </joint>
+
+        <link name="${robot_prefix}_link_1">
+            <inertial>
+                <origin xyz="-0.037464 0.047260 0" rpy="0 0 0"/>
+                <mass value="0.0785942338762368"/>
+                <inertia
+                        ixx="0.0123841200738068"
+                        ixy="0.000187984913202727"
+                        ixz="-1.32683892634271E-06"
+                        iyy="7.01690345033622E-05"
+                        iyz="9.17416945099368E-05"
+                        izz="0.0123862261905615" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://edo_description/meshes/visual/link_1.dae"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://edo_description/meshes/collision/link_1.dae"/>
+                </geometry>
+                <material name="Orange"/>
+            </collision>
+        </link>
+
+        <joint name="${robot_prefix}_joint_2" type="revolute">
+            <parent link="${robot_prefix}_link_1"/>
+            <child link="${robot_prefix}_link_2"/>
+            <origin xyz="0 0 0" rpy="${PI /2} 0 0"/>
+            <axis xyz="0 0 -1"/>
+            <!-- Joint limits of the real robot determined by jogging. TechSheet is wrong -->
+            <limit lower="${-98 * PI / 180}" upper="${98 * PI / 180}"
+                   effort="${max_effort}" velocity="${max_velocity}" />
+            <dynamics damping="${joint_damping}"/>
+        </joint>
+
+        <link name="${robot_prefix}_link_2">
+            <inertial>
+                <origin xyz="-0.016423 0.031803 -0.045948" rpy="0 0 0"/>
+                <mass value="0.0785942338762368"/>
+                <inertia
+                        ixx="0.0122070242873091"
+                        ixy="0.000930596667670934"
+                        ixz="-0.0011486325666074"
+                        iyy="0.007576065624266"
+                        iyz="0.0059380539105297"
+                        izz="0.00505742538729646" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0.2105 0" rpy="${PI /2} ${PI} ${PI}"/>
+                <geometry>
+                    <mesh filename="package://edo_description/meshes/visual/link_2.dae"/>
+                </geometry>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0.2105 0" rpy="${PI /2} ${PI} ${PI}"/>
+                <geometry>
+                    <mesh filename="package://edo_description/meshes/collision/link_2.dae"/>
+                </geometry>
+                <material name="Orange"/>
+            </collision>
+        </link>
+
+        <joint name="${robot_prefix}_joint_3" type="revolute">
+            <parent link="${robot_prefix}_link_2"/>
+            <child link="${robot_prefix}_link_3"/>
+            <origin xyz="0 0.2105 0" rpy="0 ${PI} ${PI}"/>
+            <axis xyz="0 0 1"/>
+            <!-- Joint limits of the real robot determined by jogging. TechSheet is wrong -->
+            <limit lower="${-98 * PI / 180}" upper="${98 * PI / 180}"
+                   effort="${max_effort}" velocity="${max_velocity}" />
+            <dynamics damping="${joint_damping}"/>
+        </joint>
+
+        <link name="${robot_prefix}_link_3">
+            <inertial>
+                <origin xyz="-0.031475 0.013100 0.000326" rpy="0 0 0"/>
+                <mass value="0.0785942338762368"/>
+                <inertia
+                        ixx="0.0123841200738068"
+                        ixy="0.000187984913202718"
+                        ixz="1.32683892634266E-06"
+                        iyy="7.01690345033619E-05"
+                        iyz="-9.17416945099381E-05"
+                        izz="0.0123862261905615" />
+            </inertial>
+
+            <visual>
+                <origin xyz="0 0 0" rpy="${PI /2} 0 0"/>
+                <geometry>
+                    <mesh filename="package://edo_description/meshes/visual/link_3.dae"/>
+                </geometry>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="${PI /2} 0 0"/>
+                <geometry>
+                    <mesh filename="package://edo_description/meshes/collision/link_3.dae"/>
+                </geometry>
+                <material name="Orange"/>
+            </collision>
+
+        </link>
+
+        <joint name="${robot_prefix}_joint_4" type="revolute">
+            <parent link="${robot_prefix}_link_3"/>
+            <child link="${robot_prefix}_link_4"/>
+            <origin xyz="0 -0.268 0" rpy="${PI / 2} 0 0"/>
+            <axis xyz="0 0 1"/>
+            <!-- Joint limits of the real robot determined by jogging. TechSheet is wrong -->
+            <limit lower="${-178 * PI / 180}" upper="${178 * PI / 180}"
+                   effort="${max_effort}" velocity="${max_velocity}" />
+            <dynamics damping="${joint_damping}"/>
+        </joint>
+
+        <link name="${robot_prefix}_link_4">
+            <inertial>
+                <origin xyz="0.033909 0.000544 -0.013765" rpy="0 0 0"/>
+                <mass value="0.0785942338762368"/>
+                <inertia
+                        ixx="0.0123841200738068"
+                        ixy="-1.32683892634285E-06"
+                        ixz="0.000187984913202718"
+                        iyy="0.0123862261905615"
+                        iyz="9.17416945099506E-05"
+                        izz="7.01690345033621E-05" />
+            </inertial>
+
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://edo_description/meshes/visual/link_4.dae"/>
+                </geometry>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://edo_description/meshes/collision/link_4.dae"/>
+                </geometry>
+                <material name="Orange"/>
+            </collision>
+        </link>
+
+        <joint name="${robot_prefix}_joint_5" type="revolute">
+            <parent link="${robot_prefix}_link_4"/>
+            <child link="${robot_prefix}_link_5"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+            <!-- Joint limits of the real robot determined by jogging. TechSheet is wrong -->
+            <limit lower="${-103 * PI / 180}" upper="${103 * PI / 180}"
+                   effort="${max_effort}" velocity="${max_velocity}" />
+            <dynamics damping="${joint_damping}"/>
+        </joint>
+
+        <link name="${robot_prefix}_link_5">
+            <inertial>
+                <origin xyz="0.029485 -0.000458 0.026739" rpy="0 0 0"/>
+                <mass value="0.0785942338762368"/>
+                <inertia
+                        ixx="0.0123841200738068"
+                        ixy="1.32683892634191E-06"
+                        ixz="0.000187984913202582"
+                        iyy="0.0123862261905615"
+                        iyz="-9.17416945099552E-05"
+                        izz="7.01690345033581E-05" />
+            </inertial>
+
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://edo_description/meshes/visual/link_5.dae"/>
+                </geometry>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://edo_description/meshes/collision/link_5.dae"/>
+                </geometry>
+                <material name="Orange"/>
+            </collision>
+        </link>
+
+        <joint name="${robot_prefix}_joint_6" type="revolute">
+            <parent link="${robot_prefix}_link_5"/>
+            <child link="${robot_prefix}_link_6"/>
+            <origin xyz="0 0 0.1745" rpy="0 0 0"/>
+            <axis xyz="0 0 1"/>
+            <!-- MoveIt has problems with these huge limits -->
+            <!--limit lower="${-2700 * PI / 180}" upper="${2700 * PI / 180}"
+                   effort="${max_effort}" velocity="${max_velocity}" /-->
+            <limit lower="${-270 * PI / 180}" upper="${270 * PI / 180}"
+                   effort="${max_effort}" velocity="${max_velocity}" />
+            <dynamics damping="${joint_damping}"/>
+        </joint>
+
+        <link name="${robot_prefix}_link_6">
+            <inertial>
+                <origin xyz="0.000007 -0.009327 0.000006" rpy="0 0 0"/>
+                <mass value="0.0279702497322662"/>
+                <inertia
+                        ixx="7.63464744598253E-06"
+                        ixy="1.89204959067221E-10"
+                        ixz="5.32970316039599E-09"
+                        iyy="1.45744912344428E-05"
+                        iyz="1.08958003890421E-10"
+                        izz="7.62871791498103E-06" />
+            </inertial>
+
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://edo_description/meshes/visual/link_6.dae"/>
+                </geometry>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://edo_description/meshes/collision/link_6.dae"/>
+                </geometry>
+                <material name="Orange"/>
+            </collision>
+        </link>
+
+        <joint name="${robot_prefix}_joint_ee" type="fixed">
+            <parent link="${robot_prefix}_link_6"/>
+            <child link="${robot_prefix}_link_ee"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </joint>
+
+        <link name="${robot_prefix}_link_ee">
+        </link>
+
+        <!--Extensions -->
+        <xacro:edo_gazebo robot_name="${robot_name}" robot_prefix="${robot_prefix}" />
+        <xacro:edo_transmission hardware_interface="${hardware_interface}"/>
+
+    </xacro:macro>
+
+</robot>

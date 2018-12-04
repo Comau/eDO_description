@@ -1,1 +1,1 @@
-controller_joint_names: ['joint_1', 'joint_2', 'joint_3', 'joint_4', 'joint_5', 'joint_6', ]
+controller_joint_names: ['edo_joint_1', 'edo_joint_2', 'edo_joint_3', 'edo_joint_4', 'edo_joint_5', 'edo_joint_6', ]

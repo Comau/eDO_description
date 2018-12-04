@@ -4,7 +4,7 @@
   <description>
     <p>URDF Description package for eDO Robot</p>
     <p>This package contains configuration data, 3D models and launch files
-for edo_sim robot</p>
+for edo_gazebo robot</p>
   </description>
   <author email="ludus.russo@gmail.com">Ludovico Russo</author>
   <maintainer email="community@eDO.cloud" > </maintainer>
